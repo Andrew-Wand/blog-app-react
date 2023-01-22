@@ -1,17 +1,23 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import visibilityIcon from "../assets/svg/visibilityIcon.svg";
+import {
+  getAuth,
+  createUserWithEmailAndPassword,
+  updateProfile,
+} from "firebase/auth";
+import { setDoc, doc, serverTimestamp } from "firebase/firestore";
+import { db } from "../firebase.config";
 
 function SignUp() {
   const [showPassword, setShowPassword] = useState(false);
   const [formData, setFormData] = useState({
     name: "",
     email: "",
-    password1: "",
-    password2: "",
+    password: "",
   });
 
-  const { email, password } = formData;
+  const { email, password, name } = formData;
 
   const navigate = useNavigate();
 
@@ -21,6 +27,37 @@ function SignUp() {
       [e.target.id]: e.target.value,
     }));
   };
+
+  const onSubmit = async (e) => {
+    e.preventDefault();
+
+    try {
+      const auth = getAuth();
+
+      const userCredential = await createUserWithEmailAndPassword(
+        auth,
+        email,
+        password
+      );
+
+      const user = userCredential.user;
+
+      updateProfile(auth.currentUser, {
+        displayName: name,
+      });
+
+      const formDataCopy = { ...formData };
+      delete formDataCopy.password;
+
+      formDataCopy.timestamp = serverTimestamp();
+
+      await setDoc(doc(db, "users", user.uid), formDataCopy);
+
+      navigate("/");
+    } catch (error) {
+      console.log(error);
+    }
+  };
   return (
     <div className="min-h-screen">
       <header>
@@ -29,9 +66,9 @@ function SignUp() {
 
       <main>
         <div className="form-container bg-base-200 p-5 m-5 rounded-xl shadow-lg">
-          <form className="p-5">
+          <form className="p-5" onSubmit={onSubmit}>
             <label className="input-group">
-              <span>Name</span>
+              <span className="bg-orange-500 text-black">Name</span>
               <input
                 type="text"
                 className="input input-bordered"
@@ -42,7 +79,7 @@ function SignUp() {
               />
             </label>
             <label className="input-group mt-10">
-              <span>Email</span>
+              <span className="bg-orange-500 text-black">Email</span>
               <input
                 type="email"
                 className="input input-bordered"
@@ -54,27 +91,17 @@ function SignUp() {
             </label>
 
             <label className="input-group mb-5 mt-10">
-              <span>Password</span>
+              <span className="bg-orange-500 text-black">Password</span>
               <input
                 type={showPassword ? "text" : "password"}
                 className="input input-bordered w-[208px]"
                 placeholder="Ex. '123456'"
-                id="password1"
+                id="password"
                 value={password}
                 onChange={onChange}
               />
             </label>
-            <label className="input-group my-10">
-              <span>Confirm</span>
-              <input
-                type={showPassword ? "text" : "password"}
-                className="input input-bordered w-[218px]"
-                placeholder="Enter password again..."
-                id="password2"
-                value={password}
-                onChange={onChange}
-              />
-            </label>
+
             <img
               src={visibilityIcon}
               alt="show password"

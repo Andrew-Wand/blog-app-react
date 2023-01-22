@@ -29,7 +29,7 @@ function SignIn() {
         <div className="form-container bg-base-200 p-5 m-5 rounded-xl shadow-lg">
           <form className="p-5">
             <label className="input-group">
-              <span>Email</span>
+              <span className="bg-orange-500 text-black">Email</span>
               <input
                 type="email"
                 className="input input-bordered"
@@ -41,7 +41,7 @@ function SignIn() {
             </label>
 
             <label className="input-group mb-5 mt-10">
-              <span>Password</span>
+              <span className="bg-orange-500 text-black">Password</span>
               <input
                 type={showPassword ? "text" : "password"}
                 className="input input-bordered w-[208px]"
