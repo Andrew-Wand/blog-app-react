@@ -6,10 +6,11 @@ import SignUp from "./pages/SignUp";
 import ForgotPassword from "./pages/ForgotPassword";
 import AddPost from "./pages/AddPost";
 import Profile from "./pages/Profile";
+import Footer from "./components/Footer";
 
 function App() {
   return (
-    <>
+    <div>
       <Router>
         <Navbar />
         <Routes>
@@ -17,11 +18,12 @@ function App() {
           <Route path="/sign-in" element={<SignIn />} />
           <Route path="/sign-up" element={<SignUp />} />
           <Route path="/profile" element={<Profile />} />
-          <Route path="/forgot-password" element={<SignIn />} />
+          <Route path="/forgot-password" element={<ForgotPassword />} />
           <Route path="/add-post" element={<AddPost />} />
         </Routes>
+        <Footer />
       </Router>
-    </>
+    </div>
   );
 }
 
