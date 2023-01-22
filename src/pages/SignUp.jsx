@@ -8,6 +8,7 @@ import {
 } from "firebase/auth";
 import { setDoc, doc, serverTimestamp } from "firebase/firestore";
 import { db } from "../firebase.config";
+import { toast } from "react-toastify";
 
 function SignUp() {
   const [showPassword, setShowPassword] = useState(false);
@@ -55,7 +56,7 @@ function SignUp() {
 
       navigate("/");
     } catch (error) {
-      console.log(error);
+      toast.error("Something went wrong with registration");
     }
   };
   return (
@@ -113,14 +114,14 @@ function SignUp() {
             </Link>
 
             <div className="text-center p-5">
-              <button className="btn bg-base-300">Sign Up</button>
+              <button className="btn  btn-primary">Sign Up</button>
             </div>
           </form>
 
           {/* Google oauth */}
 
           <div className="text-center">
-            <Link to="/sign-in" className="btn btn-primary">
+            <Link to="/sign-in" className="btn bg-base-300 ">
               Sign In
             </Link>
           </div>

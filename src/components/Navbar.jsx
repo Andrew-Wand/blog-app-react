@@ -26,7 +26,7 @@ function Navbar() {
               <Link to="/">Home</Link>
             </li>
             <li>
-              <Link to="/sign-in">Profile</Link>
+              <Link to="/profile">Profile</Link>
             </li>
           </ul>
         </div>
@@ -38,7 +38,7 @@ function Navbar() {
             <Link to="/">Home</Link>
           </li>
           <li>
-            <Link to="/sign-in">Profile</Link>
+            <Link to="/profile">Profile</Link>
           </li>
         </ul>
       </div>

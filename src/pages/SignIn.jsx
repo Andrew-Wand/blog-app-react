@@ -1,12 +1,14 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import visibilityIcon from "../assets/svg/visibilityIcon.svg";
+import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
+import { toast } from "react-toastify";
 
 function SignIn() {
   const [showPassword, setShowPassword] = useState(false);
   const [formData, setFormData] = useState({
     email: "",
-    password1: "",
+    password: "",
   });
 
   const { email, password } = formData;
@@ -19,6 +21,26 @@ function SignIn() {
       [e.target.id]: e.target.value,
     }));
   };
+
+  const onSubmit = async (e) => {
+    e.preventDefault();
+
+    try {
+      const auth = getAuth();
+
+      const userCredential = await signInWithEmailAndPassword(
+        auth,
+        email,
+        password
+      );
+
+      if (userCredential.user) {
+        navigate("/");
+      }
+    } catch (error) {
+      toast.error("Bad User Credentials");
+    }
+  };
   return (
     <div className="min-h-screen">
       <header>
@@ -27,7 +49,7 @@ function SignIn() {
 
       <main>
         <div className="form-container bg-base-200 p-5 m-5 rounded-xl shadow-lg">
-          <form className="p-5">
+          <form className="p-5" onSubmit={onSubmit}>
             <label className="input-group">
               <span className="bg-orange-500 text-black">Email</span>
               <input
@@ -46,7 +68,7 @@ function SignIn() {
                 type={showPassword ? "text" : "password"}
                 className="input input-bordered w-[208px]"
                 placeholder="Ex. '123456'"
-                id="password1"
+                id="password"
                 value={password}
                 onChange={onChange}
               />
@@ -62,14 +84,14 @@ function SignIn() {
             </Link>
 
             <div className="text-center p-5">
-              <button className="btn bg-base-300">Sign In</button>
+              <button className="btn btn-primary">Sign In</button>
             </div>
           </form>
 
           {/* Google oauth */}
 
           <div className="text-center">
-            <Link to="/sign-up" className="btn btn-primary">
+            <Link to="/sign-up" className="btn  bg-base-300">
               Sign Up
             </Link>
           </div>
