@@ -45,7 +45,7 @@ function Profile() {
     }));
   };
   return (
-    <div>
+    <div className="min-h-screen">
       <header>
         <p>My Profile</p>
         <button type="button" onClick={onLogout}>
