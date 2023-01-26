@@ -10,6 +10,8 @@ import Footer from "./components/Footer";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import PrivateRoute from "./components/PrivateRoute";
+import Post from "./pages/Post";
+import EditPost from "./pages/EditPost";
 
 function App() {
   return (
@@ -25,6 +27,8 @@ function App() {
           </Route>
           <Route path="/forgot-password" element={<ForgotPassword />} />
           <Route path="/add-post" element={<AddPost />} />
+          <Route path="/edit-post/:postId" element={<EditPost />} />
+          <Route path="/post/:postId" element={<Post />} />
         </Routes>
         <Footer />
       </Router>

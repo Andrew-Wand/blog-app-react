@@ -30,7 +30,9 @@ function Navbar() {
             </li>
           </ul>
         </div>
-        <a className="btn btn-ghost normal-case text-xl xl:ml-48">Blog App</a>
+        <Link to="/" className="btn btn-ghost normal-case text-xl xl:ml-48">
+          Blog App
+        </Link>
       </div>
       <div className="navbar-center hidden lg:flex">
         <ul className="menu menu-horizontal px-1">
