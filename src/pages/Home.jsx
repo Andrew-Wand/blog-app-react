@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useNavigate, useParams } from "react-router-dom";
+import { useNavigate, useParams, Link } from "react-router-dom";
 import {
   collection,
   getDocs,
@@ -13,8 +13,10 @@ import {
   deleteDoc,
 } from "firebase/firestore";
 import { db } from "../firebase.config";
+import { getAuth } from "firebase/auth";
 import { toast } from "react-toastify";
 import PostItem from "../components/PostItem";
+import Spinner from "../components/Spinner";
 
 function Home() {
   const [listings, setListings] = useState(null);
@@ -23,6 +25,7 @@ function Home() {
 
   const params = useParams();
   const navigate = useNavigate();
+  const auth = getAuth();
 
   useEffect(() => {
     const fetchListings = async () => {
@@ -31,7 +34,12 @@ function Home() {
         const listingsRef = collection(db, "listings");
 
         // Create a query
-        const q = query(listingsRef, orderBy("timestamp", "desc"), limit(10));
+        const q = query(
+          listingsRef,
+          orderBy("timestamp", "desc"),
+          // where("userRef", "==", auth.currentUser.uid),
+          limit(10)
+        );
 
         // Execute query
         const querySnap = await getDocs(q);
@@ -49,13 +57,17 @@ function Home() {
         });
 
         setListings(listings);
+        setLoading(false);
+
+        // console.log(auth.currentUser.uid);
       } catch (error) {
-        toast.error("Could not fetch listings");
+        // toast.error("Could not fetch listings");
+        setLoading(false);
       }
     };
 
     fetchListings();
-  }, []);
+  }, [auth.currentUser?.uid]);
 
   // Pagination
   const onFetchMorePosts = async () => {
@@ -87,6 +99,7 @@ function Home() {
       });
 
       setListings((prevState) => [...prevState, ...listings]);
+      setLoading(false);
     } catch (error) {
       toast.error("Could not fetch listings");
     }
@@ -105,13 +118,14 @@ function Home() {
 
   return (
     <div className="min-h-screen">
-      {listings && listings.length > 0 ? (
+      {loading ? (
+        <Spinner />
+      ) : auth.currentUser ? (
         <>
           <main>
             <div>
               <ul className="card-body">
                 {listings.map((listing) => (
-                  // <h1 key={listing.id}>{listing.data.postTitle}</h1>
                   <PostItem
                     listing={listing.data}
                     id={listing.id}
@@ -123,13 +137,14 @@ function Home() {
               </ul>
             </div>
           </main>
-
           <br />
           <br />
           {lastFetchedPost && <p onClick={onFetchMorePosts}>Load More</p>}
         </>
       ) : (
-        <h1>No listings</h1>
+        <Link to="sign-in" className="link link-warning">
+          Sign in to post!
+        </Link>
       )}
     </div>
   );
