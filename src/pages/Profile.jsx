@@ -46,48 +46,68 @@ function Profile() {
   };
 
   return (
-    <div className="min-h-screen">
+    <div className="min-h-screen card">
       <header>
-        <p>My Profile</p>
-        <button type="button" onClick={onLogout}>
-          Logout
-        </button>
+        <h1 className="card-title text-5xl justify-center p-10">My Profile</h1>
       </header>
 
-      <main>
-        <div>
-          <p>Personal Details</p>
-          <p
-            onClick={() => {
-              changeDetails && onSubmit();
-              setChangeDetails((prevState) => !prevState);
-            }}
-            className="cursor-pointer"
-          >
-            {changeDetails ? "done" : "change"}
-          </p>
+      <main className="card-body ">
+        <div className="">
+          <h2 className="text-3xl">Personal Details</h2>
+          <div className="divider"></div>
+          <div className="flex justify-center">
+            <button
+              onClick={() => {
+                changeDetails && onSubmit();
+                setChangeDetails((prevState) => !prevState);
+              }}
+              className={
+                changeDetails ? "btn btn-accent my-5" : "btn btn-secondary my-5"
+              }
+            >
+              {changeDetails ? "save" : "change"}
+            </button>
+          </div>
         </div>
 
         <div>
           <form>
-            <input
-              type="text"
-              id="name"
-              className={!changeDetails ? "profileName" : "profileNameActive"}
-              disabled={!changeDetails}
-              value={name}
-              onChange={onChange}
-            />
-            <input
-              type="text"
-              id="email"
-              className={!changeDetails ? "profileEmail" : "profileEmailActive"}
-              disabled={!changeDetails}
-              value={email}
-              onChange={onChange}
-            />
+            <label className="input-group mb-7">
+              <span className="input-text bg-primary text-base-100">Name</span>
+              <input
+                type="text"
+                id="name"
+                className={
+                  !changeDetails
+                    ? "profileName input"
+                    : "profileNameActive input bg-gray-800"
+                }
+                disabled={!changeDetails}
+                value={name}
+                onChange={onChange}
+              />
+            </label>
+
+            <label className="input-group mb-7">
+              <span className="input-text bg-primary text-base-100">Email</span>
+              <input
+                type="text"
+                id="email"
+                className={
+                  !changeDetails
+                    ? "profileEmail input"
+                    : "profileEmailActive input bg-gray-800"
+                }
+                disabled={!changeDetails}
+                value={email}
+                onChange={onChange}
+              />
+            </label>
           </form>
         </div>
+        <button type="button" onClick={onLogout} className="btn btn-primary">
+          Logout
+        </button>
       </main>
     </div>
   );

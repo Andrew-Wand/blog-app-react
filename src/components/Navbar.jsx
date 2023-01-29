@@ -3,6 +3,7 @@ import { useState, useRef } from "react";
 import googleIcon from "../assets/svg/googleIcon.svg";
 import { getAuth } from "firebase/auth";
 import { FaPencilAlt } from "react-icons/fa";
+import pic1 from "../assets/jpg/pic1.png";
 
 function Navbar() {
   const navigate = useNavigate();
@@ -37,7 +38,7 @@ function Navbar() {
         <div className="dropdown xl:hidden">
           <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
             <div className="w-10 rounded-full">
-              <img src={googleIcon} />
+              <img src={pic1} />
             </div>
           </label>
           <ul

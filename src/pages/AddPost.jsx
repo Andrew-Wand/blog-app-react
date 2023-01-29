@@ -50,8 +50,14 @@ function AddPost() {
 
   return (
     <div className="min-h-screen">
-      <header>
-        <h1 className="text-center text-5xl px-10 py-8 underline">Add Post</h1>
+      <header className="p-5">
+        <button
+          className="btn btn-md btn-secondary"
+          onClick={() => navigate("/")}
+        >
+          Back
+        </button>
+        <h1 className="text-center text-5xl  underline">Add Post</h1>
       </header>
 
       <main>

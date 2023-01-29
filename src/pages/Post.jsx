@@ -32,7 +32,12 @@ function Post() {
 
   return (
     <main className="m-5 min-h-screen">
-      <button className="btn mr-10 btn-md btn-secondary">Back</button>
+      <button
+        className="btn mr-10 btn-md btn-secondary"
+        onClick={() => navigate("/")}
+      >
+        Back
+      </button>
       <div>
         <h1 className="text-4xl my-5 text-left">{post.postTitle}</h1>
       </div>
