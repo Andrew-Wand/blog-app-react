@@ -124,7 +124,7 @@ function Home() {
         <>
           <main>
             <div>
-              <ul className="card-body">
+              <ul className="m-5">
                 {listings.map((listing) => (
                   <PostItem
                     listing={listing.data}
@@ -142,9 +142,20 @@ function Home() {
           {lastFetchedPost && <p onClick={onFetchMorePosts}>Load More</p>}
         </>
       ) : (
-        <Link to="sign-in" className="link link-warning">
-          Sign in to post!
-        </Link>
+        <div className="hero min-h-screen ">
+          <div className="hero-content text-center">
+            <div className="max-w-md">
+              <h1 className="text-5xl font-bold">Welcome!</h1>
+              <p className="py-6">
+                Bloggy is all about your personal blog! Post whatever you're
+                feeling!
+              </p>
+              <Link to="sign-in" className="btn btn-primary">
+                Sign in to post!
+              </Link>
+            </div>
+          </div>
+        </div>
       )}
     </div>
   );

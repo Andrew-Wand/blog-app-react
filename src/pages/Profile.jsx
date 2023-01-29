@@ -44,6 +44,7 @@ function Profile() {
       [e.target.id]: e.target.value,
     }));
   };
+
   return (
     <div className="min-h-screen">
       <header>

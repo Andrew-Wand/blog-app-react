@@ -49,38 +49,43 @@ function AddPost() {
   };
 
   return (
-    <div>
+    <div className="min-h-screen">
       <header>
-        <p>Add Post</p>
+        <h1 className="text-center text-5xl px-10 py-8 underline">Add Post</h1>
       </header>
 
       <main>
-        <form onSubmit={onSubmit}>
-          <div>
-            <label>Title:</label>
+        <form
+          onSubmit={onSubmit}
+          className="form-container bg-base-300 p-5 m-5 rounded-xl shadow-lg"
+        >
+          <label className="input-group">
+            <span className="bg-[#38bdf8] text-black">Title:</span>
             <input
               type="text"
               id="postTitle"
+              className="input input-bordered"
               value={postTitle}
               maxLength="32"
               onChange={onChange}
               required
             />
-          </div>
+          </label>
 
           <div>
-            <label>Body:</label>
             <textarea
               type="text"
               id="postBody"
               value={postBody}
               onChange={onChange}
-              className="textarea textarea-bordered"
+              className="textarea textarea-bordered textarea-lg w-full max-w-xs mt-10"
+              placeholder="Type blog post here..."
+              rows="10"
               required
             ></textarea>
           </div>
 
-          <button type="submit" className="btn">
+          <button type="submit" className="btn btn-primary mt-10">
             Create Post
           </button>
         </form>

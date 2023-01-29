@@ -52,7 +52,7 @@ function SignIn() {
         <div className="form-container bg-base-200 p-5 m-5 rounded-xl shadow-lg">
           <form className="p-5" onSubmit={onSubmit}>
             <label className="input-group">
-              <span className="bg-orange-500 text-black">Email</span>
+              <span className="bg-[#38bdf8] text-black">Email</span>
               <input
                 type="email"
                 className="input input-bordered"
@@ -64,7 +64,7 @@ function SignIn() {
             </label>
 
             <label className="input-group mb-5 mt-10">
-              <span className="bg-orange-500 text-black">Password</span>
+              <span className=" bg-[#38bdf8] text-black">Password</span>
               <input
                 type={showPassword ? "text" : "password"}
                 className="input input-bordered w-[208px]"
@@ -80,7 +80,7 @@ function SignIn() {
               onClick={() => setShowPassword((prevState) => !prevState)}
               className="showPassword absolute right-16 top-[330px] cursor-pointer"
             />
-            <Link to="/forgot-password" className="link link-warning">
+            <Link to="/forgot-password" className="link">
               Forgot Password
             </Link>
 
