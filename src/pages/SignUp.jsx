@@ -67,8 +67,8 @@ function SignUp() {
       </header>
 
       <main>
-        <div className="form-container bg-base-200 p-5 m-5 rounded-xl shadow-lg">
-          <form className="p-5" onSubmit={onSubmit}>
+        <div className="form-container bg-base-200 p-5 m-5 rounded-xl shadow-lg xl:flex xl:flex-col xl:items-center">
+          <form className="p-5 mt-10" onSubmit={onSubmit}>
             <label className="input-group">
               <span className="bg-[#38bdf8] text-black">Name</span>
               <input
@@ -120,6 +120,7 @@ function SignUp() {
           </form>
 
           <Oauth />
+          <div className="divider"></div>
 
           <div className="text-center">
             <Link to="/sign-in" className="btn bg-base-300 ">

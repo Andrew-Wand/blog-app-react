@@ -70,7 +70,7 @@ function AddPost() {
             <input
               type="text"
               id="postTitle"
-              className="input input-bordered"
+              className="input input-bordered xl:w-full"
               value={postTitle}
               maxLength="32"
               onChange={onChange}
@@ -84,7 +84,7 @@ function AddPost() {
               id="postBody"
               value={postBody}
               onChange={onChange}
-              className="textarea textarea-bordered textarea-lg w-full max-w-xs mt-10"
+              className="textarea textarea-bordered textarea-lg w-full max-w-xs xl:max-w-full mt-10 "
               placeholder="Type blog post here..."
               rows="10"
               required

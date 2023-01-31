@@ -17,6 +17,7 @@ import { getAuth } from "firebase/auth";
 import { toast } from "react-toastify";
 import PostItem from "../components/PostItem";
 import Spinner from "../components/Spinner";
+import homePic from "../assets/jpg/homepicfinal.png";
 
 function Home() {
   const [listings, setListings] = useState(null);
@@ -139,7 +140,16 @@ function Home() {
           </main>
           <br />
           <br />
-          {lastFetchedPost && <p onClick={onFetchMorePosts}>Load More</p>}
+          <div className="text-center">
+            {lastFetchedPost && (
+              <button
+                onClick={onFetchMorePosts}
+                className="btn btn-primary mb-5"
+              >
+                Load More
+              </button>
+            )}
+          </div>
         </>
       ) : (
         <div className="hero min-h-screen ">
@@ -153,6 +163,7 @@ function Home() {
               <Link to="sign-in" className="btn btn-primary">
                 Sign in to post!
               </Link>
+              <img src={homePic} alt="Home Pic" />
             </div>
           </div>
         </div>

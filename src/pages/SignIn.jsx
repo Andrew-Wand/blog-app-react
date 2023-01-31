@@ -49,9 +49,9 @@ function SignIn() {
       </header>
 
       <main>
-        <div className="form-container bg-base-200 p-5 m-5 rounded-xl shadow-lg">
-          <form className="p-5" onSubmit={onSubmit}>
-            <label className="input-group">
+        <div className="form-container bg-base-200 p-5 m-5 rounded-xl shadow-lg xl:flex xl:flex-col xl:items-center">
+          <form className="p-5 mt-10 " onSubmit={onSubmit}>
+            <label className="input-group ">
               <span className="bg-[#38bdf8] text-black">Email</span>
               <input
                 type="email"
@@ -78,7 +78,7 @@ function SignIn() {
               src={visibilityIcon}
               alt="show password"
               onClick={() => setShowPassword((prevState) => !prevState)}
-              className="showPassword absolute right-16 top-[330px] cursor-pointer"
+              className="showPassword absolute right-16 top-[280px] cursor-pointer"
             />
             <Link to="/forgot-password" className="link">
               Forgot Password
@@ -90,7 +90,7 @@ function SignIn() {
           </form>
 
           <Oauth />
-
+          <div className="divider"></div>
           <div className="text-center">
             <Link to="/sign-up" className="btn  bg-base-300">
               Sign Up

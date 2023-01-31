@@ -51,11 +51,11 @@ function Profile() {
         <h1 className="card-title text-5xl justify-center p-10">My Profile</h1>
       </header>
 
-      <main className="card-body ">
+      <main className="card-body xl:items-center ">
         <div className="">
           <h2 className="text-3xl">Personal Details</h2>
           <div className="divider"></div>
-          <div className="flex justify-center">
+          <div className="flex justify-center xl:justify-center">
             <button
               onClick={() => {
                 changeDetails && onSubmit();
@@ -105,7 +105,12 @@ function Profile() {
             </label>
           </form>
         </div>
-        <button type="button" onClick={onLogout} className="btn btn-primary">
+        <div className="divider"></div>
+        <button
+          type="button"
+          onClick={onLogout}
+          className="btn btn-primary xl:w-2/12"
+        >
           Logout
         </button>
       </main>

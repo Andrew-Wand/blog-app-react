@@ -33,17 +33,17 @@ function Navbar() {
   };
 
   return (
-    <div className="navbar bg-base-300 shadow-md p-5">
+    <div className="navbar bg-base-300 shadow-md p-5 sticky top-0 z-50">
       <div className="navbar-start">
-        <div className="dropdown xl:hidden">
+        <div className="dropdown xl:hidden  ">
           <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
             <div className="w-10 rounded-full">
-              <img src={pic1} />
+              <img src={auth.currentUser ? pic1 : googleIcon} />
             </div>
           </label>
           <ul
             tabIndex={0}
-            className="menu menu-compact dropdown-content mt-5 p-2 shadow bg-base-100 rounded-box w-52 bg-[#38bdf8] text-[#000]"
+            className="menu menu-compact dropdown-content mt-5 p-2 shadow bg-base-100 rounded-box w-52 bg-[#38bdf8] text-[#000] "
           >
             <li>
               <Link

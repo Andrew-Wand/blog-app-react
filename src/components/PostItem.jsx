@@ -19,32 +19,37 @@ function PostItem({ listing, id, onDelete, onEdit }) {
   const auth = getAuth();
 
   return (
-    // <li className="bg-base-300 m-5 card p-5">
     <li
       className={
         listing.userRef === auth.currentUser?.uid
-          ? " my-2 card bg-neutral drop-shadow-xl rounded-md"
+          ? " my-5 card bg-neutral drop-shadow-xl rounded-md xl:rounded-none xl:w-7/12 xl:m-auto xl:my-5 xl:shadow-xl"
           : "hidden"
       }
     >
-      <div className="card-title justify-left ml-3 text-[24px] underline p-5 text-primary">
-        <Link to={`/post/${id}`}>{listing.postTitle.slice(0, 12)}...</Link>
-      </div>
+      <div className="card-title justify-left ml-3 mt-5 text-[26px] underline p-5 text-primary">
+        <Link to={`/post/${id}`}>
+          {listing.postTitle.slice(0, 24)}
 
+          {listing.postTitle.length < 20 ? "" : "..."}
+        </Link>
+      </div>
+      <div className="divider"></div>
       <div className="card-body break-words">
-        <p>{listing.postBody.slice(0, 100)}...</p>
+        <p>{listing.postBody.slice(0, 200)}...</p>
       </div>
-
       <div className="flex p-5">
         {onEdit && (
-          <p onClick={() => onEdit(id)} className="btn text-2xl mr-2">
+          <p
+            onClick={() => onEdit(id)}
+            className="btn btn-primary xl:btn-ghost text-2xl mr-2"
+          >
             <FiEdit />
           </p>
         )}
         {onDelete && (
           <button
             onClick={() => onDelete(listing.id, listing.postTitle)}
-            className="btn text-2xl "
+            className="btn btn-primary xl:btn-ghost text-2xl "
           >
             <BsTrash />
           </button>
